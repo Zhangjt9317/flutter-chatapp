@@ -7,6 +7,12 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+
+  final formKey = GlobalKey<FormState>();
+  TextEditingController userNameTextEditingController = new TextEditingController();
+  TextEditingController emailTextEditingController = new TextEditingController();
+  TextEditingController passwordTextEditingController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,13 +26,27 @@ class _SignupState extends State<Signup> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                TextField(
-                  style: simpleTextStyle(),
-                  decoration: textFieldInputDecoration("email"),
-                ),
-                TextField(
-                  style: simpleTextStyle(),
-                  decoration: textFieldInputDecoration("password"),
+                Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: userNameTextEditingController,
+                        style: simpleTextStyle(),
+                        decoration: textFieldInputDecoration("username"),
+                      ),
+                      TextFormField(
+                        controller: emailTextEditingController,
+                        style: simpleTextStyle(),
+                        decoration: textFieldInputDecoration("email"),
+                      ),
+                      TextFormField(
+                        controller: passwordTextEditingController,
+                        style: simpleTextStyle(),
+                        decoration: textFieldInputDecoration("password"),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 8,),
                 Container(
@@ -51,7 +71,7 @@ class _SignupState extends State<Signup> {
                       ),
                       borderRadius: BorderRadius.circular(30)
                   ),
-                  child: Text("Sign In", style: mediumTextStyle()),
+                  child: Text("Sign Up", style: mediumTextStyle()),
                 ),
                 SizedBox(height: 16,),
                 Container(
@@ -62,7 +82,7 @@ class _SignupState extends State<Signup> {
                       color:Colors.white,
                       borderRadius: BorderRadius.circular(30)
                   ),
-                  child: Text("Sign In with Google", style: TextStyle(
+                  child: Text("Sign Up with Google", style: TextStyle(
                       color: Colors.black,
                       fontSize:17
                   ),),
@@ -72,8 +92,8 @@ class _SignupState extends State<Signup> {
                   // align in the center
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don't have account? ", style: mediumTextStyle(),),
-                    Text("Register now", style: TextStyle(
+                    Text("Already have an account? ", style: mediumTextStyle(),),
+                    Text("SignIn now", style: TextStyle(
                         color: Colors.white,
                         fontSize: 17,
                         decoration: TextDecoration.underline
